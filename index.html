@@ -362,7 +362,7 @@
       }
 
       async function getFilms(categories) {
-        let  count=0
+        let  count=1
         let gallery = document.getElementById("gallery")
         
         for (const category of categories) {
@@ -383,10 +383,10 @@
 
           gallery.innerHTML += `     <div class="gallery">
         <h5>${category}</h5>
-        <div id="watch-it${count}" class="carousel slide" data-bs-slide="carousel">
+        <div id="watch-it" class="carousel slide" data-bs-slide="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <div  class="slide1">
+              <div  class="slide${count}">
                 <div id="movie${count}" class="row">
                   
                 
@@ -420,10 +420,14 @@
 
         moviesX.innerHTML +=  `<div class="col-md-2">
                     <img
-                      src=${films[category][i].imageUrl} href="./backoffice=?"
+                      src=${films[category][i].imageUrl} " 
+                      
+                      
                       alt=""
                       class="movie-image"
                     />
+                    
+      
                   </div>`
 
       }
