@@ -362,7 +362,9 @@
       }
 
       async function getFilms(categories) {
+        let  count=0
         let gallery = document.getElementById("gallery")
+        
         for (const category of categories) {
           console.log(category);
           const filmsResponse = await fetch(
@@ -376,111 +378,25 @@
           );
 
           films[category] = await filmsResponse.json();
+          console.log(films[category].length)
+          
 
           gallery.innerHTML += `     <div class="gallery">
         <h5>${category}</h5>
-        <div id="watch-it" class="carousel slide" data-bs-slide="carousel">
+        <div id="watch-it${count}" class="carousel slide" data-bs-slide="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <div class="slide1">
-                <div class="row">
-                  <div class="col-md-2">
-                    <img
-                      src=${films[category][0].imageUrl}
-                      alt=""
-                      class="movie-image"
-                    />
-                  </div>
-                  <div class="col-md-2">
-                    <img
-                      src=${films[category][0].imageUrl}
-                      alt=""
-                      class="movie-image"
-                    />
-                  </div>
-                  <div class="col-md-2">
-                    <img
-                      src="assets/media/media8.webp"
-                      alt=""
-                      class="movie-image"
-                    />
-                  </div>
-                  <div class="col-md-2">
-                    <img
-                      src="assets/media/media9.jpg"
-                      alt=""
-                      class="movie-image"
-                    />
-                  </div>
-                  <div class="col-md-2">
-                    <img
-                      src="assets/media/media10.jpg"
-                      alt=""
-                      class="movie-image"
-                    />
-                  </div>
-                  <div class="col-md-2">
-                    <img
-                      src="assets/media/media11.jpg"
-                      alt=""
-                      class="movie-image"
-                    />
-                  </div>
+              <div  class="slide1">
+                <div id="movie${count}" class="row">
+                  
+                
                 </div>
               </div>
             </div>
-            <div class="carousel-item">
-              <div class="slide2">
-                <div class="row">
-                  <div class="col-md-2">
-                    <img
-                      src="assets/media/media6.jpg"
-                      alt=""
-                      class="movie-image"
-                    />
-                  </div>
-                  <div class="col-md-2">
-                    <img
-                      src="assets/media/media7.webp"
-                      alt=""
-                      class="movie-image"
-                    />
-                  </div>
-                  <div class="col-md-2">
-                    <img
-                      src="assets/media/media8.webp"
-                      alt=""
-                      class="movie-image"
-                    />
-                  </div>
-                  <div class="col-md-2">
-                    <img
-                      src="assets/media/media9.jpg"
-                      alt=""
-                      class="movie-image"
-                    />
-                  </div>
-                  <div class="col-md-2">
-                    <img
-                      src="assets/media/media10.jpg"
-                      alt=""
-                      class="movie-image"
-                    />
-                  </div>
-                  <div class="col-md-2">
-                    <img
-                      src="assets/media/media11.jpg"
-                      alt=""
-                      class="movie-image"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            
           <a
             class="carousel-control-prev"
-            href="#watch-it"
+            href="#watch-it${count}"
             role="button"
             data-bs-slide="prev"
           >
@@ -488,7 +404,7 @@
           </a>
           <a
             class="carousel-control-next"
-            href="#watch-it"
+            href="#watch-it${count}"
             role="button"
             data-bs-slide="next"
           >
@@ -497,7 +413,24 @@
         </div>
       </div>`
 
+      let moviesX = document.getElementById("movie"+count)
 
+      for(i=0;i<films[category].length;i++){
+        console.log(films[category][i])
+
+        moviesX.innerHTML +=  `<div class="col-md-2">
+                    <img
+                      src=${films[category][i].imageUrl}
+                      alt=""
+                      class="movie-image"
+                    />
+                  </div>`
+
+      }
+
+
+
+count++
 
 
 
